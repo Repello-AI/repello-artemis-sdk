@@ -12,7 +12,7 @@ pip install repello-artemis-sdk
 
 ## Requirements
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - `requests` library (automatically installed as a dependency)
 
 ## Quick Start
