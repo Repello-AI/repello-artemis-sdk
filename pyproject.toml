@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repello-artemis-sdk"
+version = "1.0.0"
+description = "Client SDK for triggering actions on Repello's Artemis Platform"
+readme = "README.md"
+authors = [
+    {name = "Aryan Ranjan", email = "aryan@repello.ai"}
+]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Repello-AI/repello-artemis-sdk"
+"Bug Tracker" = "https://github.com/Repello-AI/repello-artemis-sdk/issues"
+# "Documentation" = "https://your-sdk-name.readthedocs.io"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
