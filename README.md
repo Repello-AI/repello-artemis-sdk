@@ -29,14 +29,17 @@ client = RepelloArtemisClient(
     log_to_file="artemis.log"  # Optional: Log to file
 )
 
-# Trigger a scan on an asset
+# Trigger a single scan type on an asset
 client.assets.trigger_scan("asset_id", ScanType.quick_scan)
+
+# Trigger multiple scan types on an asset
+client.assets.trigger_scan("asset_id", [ScanType.quick_scan, ScanType.safety_scan])
 ```
 
 ## Features
 
 - Simple, intuitive API for interacting with Repello's Artemis Platform
-- Supports different scan types for assets
+- Supports single or multiple scan types for assets in a single request
 - Configurable logging (console and/or file)
 - Type hints for better IDE integration
 
@@ -74,16 +77,21 @@ Parameters:
 #### Trigger Scan
 
 ```python
-client.assets.trigger_scan(asset_id: str, scan_type: ScanType)
+client.assets.trigger_scan(asset_id: str, scan_type: Union[ScanType, List[ScanType]])
 ```
 
 Parameters:
 - `asset_id`: ID of the asset to scan
-- `scan_type`: Type of scan to perform (from `ScanType` enum)
+- `scan_type`: Type of scan to perform (from `ScanType` enum) or a list of scan types
 
 Available scan types:
 - `ScanType.quick_scan`: Performs a quick scan on the asset
-- Other scan types (refer to the `ScanType` enum documentation)
+- `ScanType.safety_scan`: Performs a safety scan on the asset
+- `ScanType.owasp`: Performs an OWASP guideline-based scan
+- `ScanType.mitre`: Performs a MITRE ATT&CK framework-based scan
+- `ScanType.nist`: Performs a NIST standards-based scan
+- `ScanType.whistleblower`: Performs a whistleblower vulnerability scan
+- `ScanType.fingerprint`: Performs a digital fingerprinting scan
 
 ## Changelog
 See the CHANGELOG.md file for details on all changes and releases.
@@ -91,7 +99,6 @@ See the CHANGELOG.md file for details on all changes and releases.
 ## License
 
 This project is licensed under the Apache License 2.0 - see the details in the license file.
-
 
 ## Issues
 
